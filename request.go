@@ -1,8 +1,10 @@
 package tokenex
 
-import "os"
-import "encoding/json"
-import gorequest "github.com/parnurzeal/gorequest"
+import (
+  "os";
+  "encoding/json";
+  "github.com/parnurzeal/gorequest"
+)
 
 func request(action string, data map[string]interface{}) string {
   baseUrl := os.Getenv("TOKENEX_BASE_URL")
