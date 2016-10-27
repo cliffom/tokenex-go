@@ -3,29 +3,29 @@ package tokenex
 import "encoding/json"
 
 type (
-	tokenexResponse struct {
+	baseResponse struct {
 		Error           string
 		ReferenceNumber string
 		Success         bool
 	}
 
 	tokenResponse struct {
-		tokenexResponse
+		baseResponse
 		Token string
 	}
 
 	valueResponse struct {
-		tokenexResponse
+		baseResponse
 		Value string
 	}
 
 	validateResponse struct {
-		tokenexResponse
+		baseResponse
 		Valid bool
 	}
 
 	deleteResponse struct {
-		tokenexResponse
+		baseResponse
 	}
 )
 
