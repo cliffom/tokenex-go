@@ -2,30 +2,32 @@ package tokenex
 
 import "encoding/json"
 
-type TokenExResponse struct {
-	Error           string
-	ReferenceNumber string
-	Success         bool
-}
+type (
+	TokenExResponse struct {
+		Error           string
+		ReferenceNumber string
+		Success         bool
+	}
 
-type TokenResponse struct {
-	TokenExResponse
-	Token string
-}
+	TokenResponse struct {
+		TokenExResponse
+		Token string
+	}
 
-type ValueResponse struct {
-	TokenExResponse
-	Value string
-}
+	ValueResponse struct {
+		TokenExResponse
+		Value string
+	}
 
-type ValidateResponse struct {
-	TokenExResponse
-	Valid bool
-}
+	ValidateResponse struct {
+		TokenExResponse
+		Valid bool
+	}
 
-type DeleteResponse struct {
-	TokenExResponse
-}
+	DeleteResponse struct {
+		TokenExResponse
+	}
+)
 
 func Tokenize(data string, tokenScheme int) TokenResponse {
 	tData := map[string]interface{}{
