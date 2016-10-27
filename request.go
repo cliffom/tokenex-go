@@ -3,14 +3,13 @@ package tokenex
 import (
 	"encoding/json"
 	"github.com/parnurzeal/gorequest"
-	"os"
 )
 
 func request(action string, data map[string]interface{}) string {
-	baseUrl := os.Getenv("TOKENEX_BASE_URL")
+	baseUrl := config.baseUrl
 	m := map[string]interface{}{
-		"TokenExID": os.Getenv("TOKENEX_ID"),
-		"APIKey":    os.Getenv("TOKENEX_API_KEY"),
+		"TokenExID": config.id,
+		"APIKey":    config.apiKey,
 	}
 
 	for key, value := range data {
