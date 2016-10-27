@@ -13,6 +13,17 @@ func Tokenize(data string, tokenScheme int) tokenResponse {
 	return response
 }
 
+func TokenizeFromEncryptedValue(data string, tokenScheme int) tokenResponse {
+	tData := map[string]interface{}{
+		"EcryptedData": data,
+		"TokenScheme":  tokenScheme,
+	}
+	data = request("TokenizeFromEncryptedValue", tData)
+	response := tokenResponse{}
+	json.Unmarshal([]byte(data), &response)
+	return response
+}
+
 func Detokenize(token string) valueResponse {
 	tData := map[string]interface{}{
 		"Token": token,
