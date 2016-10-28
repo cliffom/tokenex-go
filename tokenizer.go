@@ -12,8 +12,9 @@ func Tokenize(data string, tokenScheme int) (TokenResponse, error) {
 		"Data":        data,
 		"TokenScheme": tokenScheme,
 	}
-	data = request(tData)
 	response := TokenResponse{}
+	data = response.get(tData)
+
 	json.Unmarshal([]byte(data), &response)
 	if response.Error != "" {
 		err = errors.New(response.Error)
@@ -29,8 +30,9 @@ func TokenizeFromEncryptedValue(data string, tokenScheme int) (TokenResponse, er
 		"EcryptedData": data,
 		"TokenScheme":  tokenScheme,
 	}
-	data = request(tData)
 	response := TokenResponse{}
+	data = response.get(tData)
+
 	json.Unmarshal([]byte(data), &response)
 	if response.Error != "" {
 		err = errors.New(response.Error)
@@ -45,8 +47,9 @@ func Detokenize(token string) (ValueResponse, error) {
 		"Action": "Detokenize",
 		"Token":  token,
 	}
-	data := request(tData)
 	response := ValueResponse{}
+	data := response.get(tData)
+
 	json.Unmarshal([]byte(data), &response)
 	if response.Error != "" {
 		err = errors.New(response.Error)
@@ -61,8 +64,9 @@ func Validate(token string) (ValidateResponse, error) {
 		"Action": "ValidateToken",
 		"Token":  token,
 	}
-	data := request(tData)
 	response := ValidateResponse{}
+	data := response.get(tData)
+
 	json.Unmarshal([]byte(data), &response)
 	if response.Error != "" {
 		err = errors.New(response.Error)
@@ -77,8 +81,9 @@ func Delete(token string) (DeleteResponse, error) {
 		"Action": "DeleteToken",
 		"Token":  token,
 	}
-	data := request(tData)
 	response := DeleteResponse{}
+	data := response.get(tData)
+
 	json.Unmarshal([]byte(data), &response)
 	if response.Error != "" {
 		err = errors.New(response.Error)
