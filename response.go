@@ -1,28 +1,28 @@
 package tokenex
 
 type (
-	baseResponse struct {
+	BaseResponse struct {
 		Error           string
 		ReferenceNumber string
 		Success         bool
 	}
 
-	tokenResponse struct {
-		baseResponse
+	TokenResponse struct {
+		BaseResponse
 		Token string
 	}
 
-	valueResponse struct {
-		baseResponse
+	ValueResponse struct {
+		BaseResponse
 		Value string
 	}
 
-	validateResponse struct {
-		baseResponse
+	ValidateResponse struct {
+		BaseResponse
 		Valid bool
 	}
 
-	deleteResponse struct {
-		baseResponse
+	DeleteResponse struct {
+		BaseResponse
 	}
 )
