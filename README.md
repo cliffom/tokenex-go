@@ -1,4 +1,4 @@
-# tokenex-go
+# tokenex-go [![CircleCI](https://circleci.com/gh/cliffom/tokenex-go.svg?style=svg)](https://circleci.com/gh/cliffom/tokenex-go)
 A Go client for the [TokenEx](https://www.tokenex.com) API.
 
 ## TokenEx API Documentation
