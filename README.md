@@ -18,10 +18,10 @@ tokenex.Initialize(
   "https://test-api.tokenex.com/TokenServices.svc/REST/",
   "YOUR_TOKENEX_ID",
   "YOUR_TOKENEX_API_KEY")
-token := tokenex.Tokenize("4242424242424242", tokenex.SIXTOKENFOUR)
-data := tokenex.Detokenize(token.Token)
-isValid := tokenex.Validate(token.Token)
-deleted := tokenex.Delete(token.Token)
+token, tokenErr := tokenex.Tokenize("4242424242424242", tokenex.SIXTOKENFOUR)
+data, dataErr := tokenex.Detokenize(token.Token)
+validate, validateErr  := tokenex.Validate(token.Token)
+delete, deleteErr := tokenex.Delete(token.Token)
 ```
 
 ## License

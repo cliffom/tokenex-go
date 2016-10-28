@@ -11,10 +11,26 @@ func TestTokenize(t *testing.T) {
 		os.Getenv("TOKENEX_ID"),
 		os.Getenv("TOKENEX_API_KEY"))
   ccNum := "4242424242424242"
-	token := Tokenize(ccNum, SIXTOKENFOUR)
-	data := Detokenize(token.Token)
-  validate := Validate(token.Token)
-  delete := Delete(token.Token)
+	token, tokenErr := Tokenize(ccNum, SIXTOKENFOUR)
+	data, dataErr := Detokenize(token.Token)
+  validate, validateErr := Validate(token.Token)
+  delete, deleteErr := Delete(token.Token)
+
+  if tokenErr != nil {
+    t.Errorf(string(tokenErr.Error()))
+  }
+
+  if dataErr != nil {
+    t.Errorf(string(dataErr.Error()))
+  }
+
+  if validateErr != nil {
+    t.Errorf(string(validateErr.Error()))
+  }
+
+  if deleteErr != nil {
+    t.Errorf(string(deleteErr.Error()))
+  }
 
   if data.Value != ccNum {
     t.Errorf("Detokenized value is not equal to original value")
