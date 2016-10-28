@@ -2,10 +2,18 @@ package tokenex
 
 import (
 	"encoding/json"
+	"log"
 	"github.com/parnurzeal/gorequest"
 )
 
 func request(action string, data map[string]interface{}) string {
+	if config.baseUrl == "" {
+		log.Fatalf("config.baseUrl not set")
+	} else if config.id == "" {
+		log.Fatalf("config.id not set")
+	} else if config.apiKey == "" {
+		log.Fatalf("config.apiKey not set")
+	}
 	baseUrl := config.baseUrl
 	m := map[string]interface{}{
 		"TokenExID": config.id,
