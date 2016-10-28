@@ -2,11 +2,11 @@ package tokenex
 
 import (
 	"encoding/json"
-	"log"
 	"github.com/parnurzeal/gorequest"
+	"log"
 )
 
-func request(action string, data map[string]interface{}) string {
+func request(data map[string]interface{}) string {
 	if config.baseUrl == "" {
 		log.Fatalf("config.baseUrl not set")
 	} else if config.id == "" {
@@ -23,10 +23,9 @@ func request(action string, data map[string]interface{}) string {
 	for key, value := range data {
 		m[key] = value
 	}
-
 	mJson, _ := json.Marshal(m)
 	request := gorequest.New()
-	_, body, _ := request.Post(baseUrl + "/" + action).
+	_, body, _ := request.Post(baseUrl + "/" + data["Action"].(string)).
 		Send(string(mJson)).
 		End()
 	return body

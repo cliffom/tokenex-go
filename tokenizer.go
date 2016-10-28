@@ -8,10 +8,11 @@ import (
 func Tokenize(data string, tokenScheme int) (TokenResponse, error) {
 	var err error
 	tData := map[string]interface{}{
+		"Action":      "Tokenize",
 		"Data":        data,
 		"TokenScheme": tokenScheme,
 	}
-	data = request("Tokenize", tData)
+	data = request(tData)
 	response := TokenResponse{}
 	json.Unmarshal([]byte(data), &response)
 	if response.Error != "" {
@@ -24,10 +25,11 @@ func Tokenize(data string, tokenScheme int) (TokenResponse, error) {
 func TokenizeFromEncryptedValue(data string, tokenScheme int) (TokenResponse, error) {
 	var err error
 	tData := map[string]interface{}{
+		"Action":       "TokenizeFromEncryptedValue",
 		"EcryptedData": data,
 		"TokenScheme":  tokenScheme,
 	}
-	data = request("TokenizeFromEncryptedValue", tData)
+	data = request(tData)
 	response := TokenResponse{}
 	json.Unmarshal([]byte(data), &response)
 	if response.Error != "" {
@@ -40,9 +42,10 @@ func TokenizeFromEncryptedValue(data string, tokenScheme int) (TokenResponse, er
 func Detokenize(token string) (ValueResponse, error) {
 	var err error
 	tData := map[string]interface{}{
-		"Token": token,
+		"Action": "Detokenize",
+		"Token":  token,
 	}
-	data := request("Detokenize", tData)
+	data := request(tData)
 	response := ValueResponse{}
 	json.Unmarshal([]byte(data), &response)
 	if response.Error != "" {
@@ -55,9 +58,10 @@ func Detokenize(token string) (ValueResponse, error) {
 func Validate(token string) (ValidateResponse, error) {
 	var err error
 	tData := map[string]interface{}{
-		"Token": token,
+		"Action": "ValidateToken",
+		"Token":  token,
 	}
-	data := request("ValidateToken", tData)
+	data := request(tData)
 	response := ValidateResponse{}
 	json.Unmarshal([]byte(data), &response)
 	if response.Error != "" {
@@ -70,9 +74,10 @@ func Validate(token string) (ValidateResponse, error) {
 func Delete(token string) (DeleteResponse, error) {
 	var err error
 	tData := map[string]interface{}{
-		"Token": token,
+		"Action": "DeleteToken",
+		"Token":  token,
 	}
-	data := request("DeleteToken", tData)
+	data := request(tData)
 	response := DeleteResponse{}
 	json.Unmarshal([]byte(data), &response)
 	if response.Error != "" {
