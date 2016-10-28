@@ -9,7 +9,7 @@ const (
 	NGUID              = 6
 	NTOKENFOUR         = 7
 	NTOKEN             = 8
-	SIXANTOKENFOUR     = 0
+	SIXANTOKENFOUR     = 9
 	FOURANTOKENFOUR    = 10
 	ANTOKENFOUR        = 11
 	ANTOKEN            = 12
