@@ -58,13 +58,7 @@ func (b *BaseResponse) result(v interface{}) error {
 }
 
 func request(data map[string]interface{}) string {
-	if config.baseUrl == "" {
-		log.Fatalf("config.baseUrl not set")
-	} else if config.id == "" {
-		log.Fatalf("config.id not set")
-	} else if config.apiKey == "" {
-		log.Fatalf("config.apiKey not set")
-	}
+	validateConfig()
 	baseUrl := config.baseUrl
 	m := map[string]interface{}{
 		"TokenExID": config.id,
@@ -80,4 +74,14 @@ func request(data map[string]interface{}) string {
 		Send(string(mJson)).
 		End()
 	return body
+}
+
+func validateConfig() {
+	if config.baseUrl == "" {
+		log.Fatalf("config.baseUrl not set")
+	} else if config.id == "" {
+		log.Fatalf("config.id not set")
+	} else if config.apiKey == "" {
+		log.Fatalf("config.apiKey not set")
+	}
 }
