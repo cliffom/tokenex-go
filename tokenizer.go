@@ -1,5 +1,11 @@
 package tokenex
 
+var config tokenexConfig
+
+func Initialize(baseUrl string, id string, apiKey string) {
+	config.init(baseUrl, id, apiKey)
+}
+
 func Tokenize(data string, tokenScheme int) (TokenResponse, error) {
 	response := TokenResponse{}
 	response.Data = map[string]interface{}{

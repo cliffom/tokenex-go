@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"errors"
 	"github.com/parnurzeal/gorequest"
-	"log"
 )
 
 type (
@@ -36,7 +35,7 @@ type (
 )
 
 func (b *BaseResponse) result(v interface{}) error {
-	err := json.Unmarshal([]byte(request(b.Data)), &v)
+	err := json.Unmarshal([]byte(b.request(b.Data)), &v)
 	errStr := ""
 	if err == nil {
 		switch v.(type) {
@@ -57,8 +56,8 @@ func (b *BaseResponse) result(v interface{}) error {
 	return err
 }
 
-func request(data map[string]interface{}) string {
-	validateConfig()
+func (b *BaseResponse) request(data map[string]interface{}) string {
+	config.validate()
 	baseUrl := config.baseUrl
 	m := map[string]interface{}{
 		"TokenExID": config.id,
@@ -74,14 +73,4 @@ func request(data map[string]interface{}) string {
 		Send(string(mJson)).
 		End()
 	return body
-}
-
-func validateConfig() {
-	if config.baseUrl == "" {
-		log.Fatalf("config.baseUrl not set")
-	} else if config.id == "" {
-		log.Fatalf("config.id not set")
-	} else if config.apiKey == "" {
-		log.Fatalf("config.apiKey not set")
-	}
 }

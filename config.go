@@ -1,15 +1,25 @@
 package tokenex
 
+import "log"
+
 type tokenexConfig struct {
 	baseUrl string
 	id      string
 	apiKey  string
 }
 
-var config tokenexConfig
+func (c *tokenexConfig) init(baseUrl string, id string, apiKey string) {
+	c.baseUrl = baseUrl
+	c.id = id
+	c.apiKey = apiKey
+}
 
-func Initialize(baseUrl string, id string, apiKey string) {
-	config.baseUrl = baseUrl
-	config.id = id
-	config.apiKey = apiKey
+func (c *tokenexConfig) validate() {
+	if c.baseUrl == "" {
+		log.Fatalf("config.baseUrl not set")
+	} else if c.id == "" {
+		log.Fatalf("config.id not set")
+	} else if c.apiKey == "" {
+		log.Fatalf("config.apiKey not set")
+	}
 }
