@@ -34,8 +34,8 @@ type (
 	}
 )
 
-func (b *BaseResponse) result(v interface{}) error {
-	err := json.Unmarshal([]byte(b.request(b.Data)), &v)
+func (b *BaseResponse) result(v interface{}, config Config) error {
+	err := json.Unmarshal([]byte(b.request(b.Data, config)), &v)
 	errStr := ""
 	if err == nil {
 		switch v.(type) {
@@ -56,7 +56,7 @@ func (b *BaseResponse) result(v interface{}) error {
 	return err
 }
 
-func (b *BaseResponse) request(data map[string]interface{}) string {
+func (b *BaseResponse) request(data map[string]interface{}, config Config) string {
 	config.validate()
 	baseUrl := config.baseUrl
 	m := map[string]interface{}{

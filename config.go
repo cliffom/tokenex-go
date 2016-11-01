@@ -2,19 +2,19 @@ package tokenex
 
 import "log"
 
-type tokenexConfig struct {
+type Config struct {
 	baseUrl string
 	id      string
 	apiKey  string
 }
 
-func (c *tokenexConfig) init(baseUrl string, id string, apiKey string) {
+func (c *Config) init(baseUrl string, id string, apiKey string) {
 	c.baseUrl = baseUrl
 	c.id = id
 	c.apiKey = apiKey
 }
 
-func (c *tokenexConfig) validate() {
+func (c *Config) validate() {
 	if c.baseUrl == "" {
 		log.Fatalf("config.baseUrl not set")
 	} else if c.id == "" {

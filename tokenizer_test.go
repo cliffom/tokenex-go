@@ -6,15 +6,15 @@ import (
 )
 
 func TestTokenize(t *testing.T) {
-	Initialize(
+	teConfig := NewConfig(
 		os.Getenv("TOKENEX_BASE_URL"),
 		os.Getenv("TOKENEX_ID"),
 		os.Getenv("TOKENEX_API_KEY"))
 	ccNum := "4242424242424242"
-	token, tokenErr := Tokenize(ccNum, SIXTOKENFOUR)
-	data, dataErr := Detokenize(token.Token)
-	validate, validateErr := Validate(token.Token)
-	delete, deleteErr := Delete(token.Token)
+	token, tokenErr := Tokenize(ccNum, SIXTOKENFOUR, teConfig)
+	data, dataErr := Detokenize(token.Token, teConfig)
+	validate, validateErr := Validate(token.Token, teConfig)
+	delete, deleteErr := Delete(token.Token, teConfig)
 
 	if tokenErr != nil {
 		t.Errorf(string(tokenErr.Error()))
