@@ -14,14 +14,14 @@ $ go get github.com/cliffom/tokenex-go
 ## Usage
 
 ```go
-tokenex.Initialize(
+config := tokenex.NewConfig(
   "https://test-api.tokenex.com/TokenServices.svc/REST/",
   "YOUR_TOKENEX_ID",
   "YOUR_TOKENEX_API_KEY")
-token, tokenErr := tokenex.Tokenize("4242424242424242", tokenex.SIXTOKENFOUR)
-data, dataErr := tokenex.Detokenize(token.Token)
-validate, validateErr  := tokenex.Validate(token.Token)
-delete, deleteErr := tokenex.Delete(token.Token)
+token, tokenErr := tokenex.Tokenize("4242424242424242", tokenex.SIXTOKENFOUR, config)
+data, dataErr := tokenex.Detokenize(token.Token, config)
+validate, validateErr  := tokenex.Validate(token.Token, config)
+delete, deleteErr := tokenex.Delete(token.Token, config)
 ```
 
 ## License
