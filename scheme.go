@@ -1,5 +1,7 @@
 package tokenex
 
+// Constant representations of the TokenEx token schemes.
+// From http://docs.tokenex.com/#appendix-token-schemes
 const (
 	SIXTOKENFOUR       = 1
 	FOURTOKENFOUR      = 2
