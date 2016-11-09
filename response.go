@@ -8,7 +8,6 @@ import (
 
 type (
 	BaseResponse struct {
-		Data            map[string]interface{}
 		Error           string
 		ReferenceNumber string
 		Success         bool
@@ -34,8 +33,8 @@ type (
 	}
 )
 
-func (b *BaseResponse) result(v interface{}, config Config) error {
-	err := json.Unmarshal([]byte(b.request(b.Data, config)), &v)
+func (b *BaseResponse) get(v interface{}, request map[string]interface{}, config Config) error {
+	err := json.Unmarshal([]byte(b.request(request, config)), &v)
 	errStr := ""
 	if err == nil {
 		switch v.(type) {
