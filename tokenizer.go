@@ -2,7 +2,7 @@
 // api (http://docs.tokenex.com/#tokenex-api-token-services).
 package tokenex
 
-// NewConfig returns a Config structure to be used for making requests to the
+// NewConfig returns a Config structure to be used for making reqs to the
 // TokenEx API.
 func NewConfig(baseUrl string, id string, apiKey string) Config {
 	var config Config
@@ -10,62 +10,62 @@ func NewConfig(baseUrl string, id string, apiKey string) Config {
 	return config
 }
 
-// Tokenize returns the tokenized representation of data using the given
-// token scheme tokenScheme
-func Tokenize(data string, tokenScheme int, config Config) (TokenResponse, error) {
-	response := TokenResponse{}
-	request := map[string]interface{}{
+// Tokenize returns the tokenized representation of d using the given
+// token scheme t
+func Tokenize(d string, t int, c Config) (TokenResponse, error) {
+	res := TokenResponse{}
+	req := map[string]interface{}{
 		"Action":      "Tokenize",
-		"Data":        data,
-		"TokenScheme": tokenScheme,
+		"Data":        d,
+		"TokenScheme": t,
 	}
-	err := response.get(&response, request, config)
-	return response, err
+	err := res.get(&res, req, c)
+	return res, err
 }
 
-// TokenizeFromEncryptedValue returns the tokenized representation of data using
-// the given token scheme tokenScheme where data was previously encrypted
-// through browser based encryption.
-func TokenizeFromEncryptedValue(data string, tokenScheme int, config Config) (TokenResponse, error) {
-	response := TokenResponse{}
-	request := map[string]interface{}{
+// TokenizeFromEncryptedValue returns the tokenized representation of d using
+// the given token scheme t where d was previously encrypted through browser
+// based encryption.
+func TokenizeFromEncryptedValue(d string, t int, c Config) (TokenResponse, error) {
+	res := TokenResponse{}
+	req := map[string]interface{}{
 		"Action":       "TokenizeFromEncryptedValue",
-		"EcryptedData": data,
-		"TokenScheme":  tokenScheme,
+		"EcryptedData": d,
+		"TokenScheme":  t,
 	}
-	err := response.get(&response, request, config)
-	return response, err
+	err := res.get(&res, req, c)
+	return res, err
 }
 
-// Detokenize returns the sensitive data from the given token
-func Detokenize(token string, config Config) (ValueResponse, error) {
-	response := ValueResponse{}
-	request := map[string]interface{}{
+// Detokenize returns the sensitive data from the given token t
+func Detokenize(t string, c Config) (ValueResponse, error) {
+	res := ValueResponse{}
+	req := map[string]interface{}{
 		"Action": "Detokenize",
-		"Token":  token,
+		"Token":  t,
 	}
-	err := response.get(&response, request, config)
-	return response, err
+	err := res.get(&res, req, c)
+	return res, err
 }
 
 // Validate returns whether the given token exists in the token vault
-func Validate(token string, config Config) (ValidateResponse, error) {
-	response := ValidateResponse{}
-	request := map[string]interface{}{
+func Validate(t string, c Config) (ValidateResponse, error) {
+	res := ValidateResponse{}
+	req := map[string]interface{}{
 		"Action": "ValidateToken",
-		"Token":  token,
+		"Token":  t,
 	}
-	err := response.get(&response, request, config)
-	return response, err
+	err := res.get(&res, req, c)
+	return res, err
 }
 
 // Delete removes the given token from the token vault
-func Delete(token string, config Config) (DeleteResponse, error) {
-	response := DeleteResponse{}
-	request := map[string]interface{}{
+func Delete(t string, c Config) (DeleteResponse, error) {
+	res := DeleteResponse{}
+	req := map[string]interface{}{
 		"Action": "DeleteToken",
-		"Token":  token,
+		"Token":  t,
 	}
-	err := response.get(&response, request, config)
-	return response, err
+	err := res.get(&res, req, c)
+	return res, err
 }

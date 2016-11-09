@@ -33,8 +33,8 @@ type (
 	}
 )
 
-func (b *BaseResponse) get(v interface{}, request map[string]interface{}, config Config) error {
-	err := json.Unmarshal([]byte(b.request(request, config)), &v)
+func (b *BaseResponse) get(v interface{}, req map[string]interface{}, c Config) error {
+	err := json.Unmarshal([]byte(b.request(req, c)), &v)
 	errStr := ""
 	if err == nil {
 		switch v.(type) {
@@ -55,20 +55,20 @@ func (b *BaseResponse) get(v interface{}, request map[string]interface{}, config
 	return err
 }
 
-func (b *BaseResponse) request(data map[string]interface{}, config Config) string {
-	config.validate()
-	baseUrl := config.baseUrl
+func (b *BaseResponse) request(d map[string]interface{}, c Config) string {
+	c.validate()
+	baseUrl := c.baseUrl
 	m := map[string]interface{}{
-		"TokenExID": config.id,
-		"APIKey":    config.apiKey,
+		"TokenExID": c.id,
+		"APIKey":    c.apiKey,
 	}
 
-	for key, value := range data {
+	for key, value := range d {
 		m[key] = value
 	}
 	mJson, _ := json.Marshal(m)
 	request := gorequest.New()
-	_, body, _ := request.Post(baseUrl + "/" + data["Action"].(string)).
+	_, body, _ := request.Post(baseUrl + "/" + d["Action"].(string)).
 		Send(string(mJson)).
 		End()
 	return body
