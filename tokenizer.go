@@ -24,7 +24,6 @@ func TokenizeFromEncryptedValue(data string, tokenScheme int, config Config) (To
 		"EcryptedData": data,
 		"TokenScheme":  tokenScheme,
 	}
-
 	err := response.get(&response, request, config)
 	return response, err
 }
